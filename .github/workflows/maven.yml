@@ -38,23 +38,23 @@ jobs:
         echo "Current Version: $VERSION"
         IFS='.' read -r -a VERSION_PARTS <<< "${VERSION}"
         BASE_VERSION=$(echo $VERSION | awk -F'-' '{print $1}')
-        QUALIFIER=$(echo $VERSION | awk -F'-' '{print $2}')
+        PATCH=$(echo $VERSION | awk -F'-' '{print $2}')
 
         echo "Base Version: $BASE_VERSION"
-        echo "Qualifier: $QUALIFIER"
+        echo "PATCH: $QUALIFIER"
 
         # MAJOR=${VERSION_PARTS[0]}
         # MINOR=${VERSION_PARTS[1]}
         # PATCH=${VERSION_PARTS[2]}
-        if [[ $QUALIFIER == *"-SNAPSHOT" ]]; then
-          QUALIFIER = .0
+        if [[ $PATCH == *"-SNAPSHOT" ]]; then
+          PATCH = 0
         fi
         NEW_PATCH=$((PATCH + 1))
         echo $NEW_PATCH
-        # NEW_VERSION="${MAJOR}.${MINOR}.${NEW_PATCH}"
-        # mvn versions:set -DnewVersion=${NEW_VERSION}
-        # IVERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-        # echo "Current Version: $IVERSION"
+        NEW_VERSION="${BASE_VERSION}.${NEW_PATCH}"
+        mvn versions:set -DnewVersion=${NEW_VERSION}
+        IVERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "Current Version: $IVERSION"
     
 
     - name: Build with Maven
