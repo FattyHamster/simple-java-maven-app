@@ -46,10 +46,11 @@ jobs:
         # MAJOR=${VERSION_PARTS[0]}
         # MINOR=${VERSION_PARTS[1]}
         # PATCH=${VERSION_PARTS[2]}
-        # if [[ $MINOR == *"-SNAPSHOT" ]]; then
-        #   MINOR = 0
-        # fi
-        # NEW_PATCH=$((PATCH + 1))
+        if [[ $QUALIFIER == *"-SNAPSHOT" ]]; then
+          QUALIFIER = .0
+        fi
+        NEW_PATCH=$((PATCH + 1))
+        echo $NEW_PATCH
         # NEW_VERSION="${MAJOR}.${MINOR}.${NEW_PATCH}"
         # mvn versions:set -DnewVersion=${NEW_VERSION}
         # IVERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
