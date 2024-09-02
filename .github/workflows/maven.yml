@@ -81,8 +81,10 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
           HOST: ${{ secrets.SSH_HOST }}
           USER: ${{ secrets.SSH_NAME }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
       run: |
-        sudo docker login -u="${{ secrets.DOCKERHUB_USERNAME }}" -p="${{ secrets.DOCKERHUB_PASSWORD }}"
+        sudo docker login -u="${DOCKERHUB_USERNAME}" -p="${DOCKERHUB_PASSWORD}"
         sudo docker pull hamster01/clockbox:latest
         sudo docker run hamster01/clockbox:latest
      
