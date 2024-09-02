@@ -37,7 +37,7 @@ jobs:
         VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         echo "Current Version: $VERSION"
         echo "VERSION=$VERSION" >> $GITHUB_ENV
-
+        MAJOR_VER=$(echo "$VERSION" | awk '{print $1}'
     # - name: Increment Version
     #   id: increment_version
     #   run: |
