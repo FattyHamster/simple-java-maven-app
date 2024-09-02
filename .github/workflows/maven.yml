@@ -40,8 +40,8 @@ jobs:
         MAJOR=${VERSION_PARTS[0]}
         MINOR=${VERSION_PARTS[1]}
         PATCH=${VERSION_PARTS[2]}
-        if [[ $PATCH == *"-SNAPSHOT" ]]; then
-          PATCH = 0
+        if [[ $MINOR == *"-SNAPSHOT" ]]; then
+          MINOR = 0
         fi
         NEW_PATCH=$((PATCH + 1))
         NEW_VERSION="${MAJOR}.${MINOR}.${NEW_PATCH}"
