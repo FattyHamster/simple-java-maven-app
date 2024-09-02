@@ -1,13 +1,13 @@
-FROM maven:3.8.6-openjdk-21 AS build
-
+FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
+RUN mvn dependency:go-offline
 RUN mvn clean package -DskipTests
 
-FROM openjdk:21-jre-slim
+
+FROM openjdk:17-jdk-slim
 WORKDIR /app
-COPY --from=build /app/target/*.jar .
+COPY --from=build /app/target/my-app-*.jar ./app.jar
 
-
-ENTRYPOINT ["java", "-jar", "*.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
