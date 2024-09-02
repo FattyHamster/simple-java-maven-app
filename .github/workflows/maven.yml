@@ -37,17 +37,23 @@ jobs:
         VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         echo "Current Version: $VERSION"
         IFS='.' read -r -a VERSION_PARTS <<< "${VERSION}"
-        MAJOR=${VERSION_PARTS[0]}
-        MINOR=${VERSION_PARTS[1]}
-        PATCH=${VERSION_PARTS[2]}
-        if [[ $MINOR == *"-SNAPSHOT" ]]; then
-          MINOR = 0
-        fi
-        NEW_PATCH=$((PATCH + 1))
-        NEW_VERSION="${MAJOR}.${MINOR}.${NEW_PATCH}"
-        mvn versions:set -DnewVersion=${NEW_VERSION}
-        IVERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-        echo "Current Version: $IVERSION"
+        BASE_VERSION=$(echo $VERSION | awk -F'-' '{print $1}')
+        QUALIFIER=$(echo $VERSION | awk -F'-' '{print $2}')
+
+        echo "Base Version: $BASE_VERSION"
+        echo "Qualifier: $QUALIFIER"
+
+        # MAJOR=${VERSION_PARTS[0]}
+        # MINOR=${VERSION_PARTS[1]}
+        # PATCH=${VERSION_PARTS[2]}
+        # if [[ $MINOR == *"-SNAPSHOT" ]]; then
+        #   MINOR = 0
+        # fi
+        # NEW_PATCH=$((PATCH + 1))
+        # NEW_VERSION="${MAJOR}.${MINOR}.${NEW_PATCH}"
+        # mvn versions:set -DnewVersion=${NEW_VERSION}
+        # IVERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        # echo "Current Version: $IVERSION"
     
 
     - name: Build with Maven
