@@ -57,8 +57,8 @@ jobs:
         echo "Current Version: $IVERSION"
     
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    # - name: Build with Maven
+    #   run: mvn -B package --file pom.xml
 
 
 #     # - name: Update dependency graph
