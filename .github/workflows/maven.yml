@@ -85,9 +85,9 @@ jobs:
         echo "$SSH_PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
 
-        ssh -i private_key.pem -o StrictHostKeyChecking=no $HOST@$USER << 'EOF'
-          echo "Connected to VM"
-          # sudo docker login -u="${DOCKERHUB_USERNAME}" -p="${DOCKERHUB_PASSWORD}"
-          sudo docker pull $DOCKERHUB_USERNAME/clockbox:latest
-          sudo docker run $DOCKERHUB_USERNAME/clockbox:latest
-        EOF
+        ssh -i private_key.pem -o StrictHostKeyChecking=no $HOST@$USER "docker run $DOCKERHUB_USERNAME/clockbox:latest && exit"
+        #   echo "Connected to VM"
+        #   # sudo docker login -u="${DOCKERHUB_USERNAME}" -p="${DOCKERHUB_PASSWORD}"
+        #   sudo docker pull $DOCKERHUB_USERNAME/clockbox:latest
+        #   sudo docker run $DOCKERHUB_USERNAME/clockbox:latest
+        # EOF
