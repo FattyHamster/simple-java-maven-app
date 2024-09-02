@@ -6,29 +6,6 @@
 # # separate terms of service, privacy policy, and support
 # # documentation.
 
-# name: Java CI with Maven
-
-# on:
-#   push:
-#     branches: [ "master" ]
-#   pull_request:
-#     branches: [ "master" ]
-
-# jobs:
-#   build:
-
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - uses: actions/checkout@v4
-#     - name: Set up JDK 17
-#       uses: actions/setup-java@v4
-#       with:
-#         java-version: '17'
-#         distribution: 'temurin'
-#         cache: maven
-#     - name: Build with Maven
-#       run: mvn -B package --file pom.xml
 name: Java CI with Maven
 
 on:
@@ -39,22 +16,20 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
-
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+#     - name: Build with Maven
+#       run: mvn -B package --file pom.xml
 
-    - name: Set up Maven 3.9.2
-      uses: actions/setup-maven@v4
-      with:
-        maven-version: '3.9.2'
 
     - name: Get Current Version
       id: get_version
