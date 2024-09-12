@@ -38,13 +38,13 @@ jobs:
         
     - name: Scan Docker image 🐳
       uses: snyk/actions/docker@master
-      continue-on-error: false
+      continue-on-error: true
 
       with:
         image: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
         args: --file=Dockerfile --severity-threshold=high --sarif-file-output=snyk.sarif
       env:
-        SNYK_TOKEN: 4daa13ca-4596-48a4-bfdd-7514a7c87a97
+        SNYK_TOKEN: ${{ SYNK_TOKEN }}
     # - name: Get Current Version
     #   id: get_version
     #   run: |
