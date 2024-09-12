@@ -7,6 +7,8 @@ on:
     branches: [ "master" ]
 permissions:
   contents: read
+env:
+  build_name : ${{ secret.DOCKERHUB_USERNAME }}/clockbox:latest
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -53,7 +55,7 @@ jobs:
             contents: read
             packages: read
           runs-on: ubuntu-latest
-          needs: hamster01/clockbox:latest
+          needs: [ build_name ]
           steps:
             - name: Checkout 🛎️
               uses: actions/checkout@v2
