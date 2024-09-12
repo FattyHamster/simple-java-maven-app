@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
 env:
-  build_name : ${{ secret.DOCKERHUB_USERNAME }}/clockbox:latest
+  build_name : ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
 jobs:
   build:
     runs-on: ubuntu-latest
