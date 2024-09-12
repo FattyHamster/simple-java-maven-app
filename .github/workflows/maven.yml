@@ -44,7 +44,7 @@ jobs:
         image: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
         args: --file=Dockerfile --severity-threshold=high --sarif-file-output=snyk.sarif
       env:
-        SNYK_TOKEN: ${{ SYNK_TOKEN }}
+        SNYK_TOKEN: ${{ secrets.SYNK_TOKEN }}
     # - name: Get Current Version
     #   id: get_version
     #   run: |
