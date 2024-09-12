@@ -26,7 +26,7 @@ jobs:
       with:
         fail-on-severity: critical
         allow-licenses: MIT, Apache-2.0, ISC, BSD-2-Clause, 0BSD, NOASSERTION
-        base-ref: ${{ github.event.pull_request.base.sha || 'main' }}
+        base-ref: ${{ github.event.pull_request.base.sha || 'master' }}
         head-ref: ${{ github.event.pull_request.head.sha || github.ref }}
 
     # - name: Get Current Version
